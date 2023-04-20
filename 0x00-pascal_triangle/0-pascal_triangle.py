@@ -12,6 +12,8 @@ def pascal_triangle(n):
     values of the pascal triangle"""
 
     result = []
+    if n <= 0:
+        return result
     for i in range(1, n+1):
         c = 1
         myList = []
