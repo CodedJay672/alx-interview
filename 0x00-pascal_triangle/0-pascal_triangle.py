@@ -6,6 +6,7 @@ a pascal triangle.
 
 """
 
+
 def pascal_triangle(n):
     """ this function computes a pascal triangle
     the function returns a list of lists containing the
