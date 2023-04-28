@@ -25,6 +25,9 @@ def box_object(boxes):
 def canUnlockAll(boxes):
     """function that tries to unlock all boxes"""
 
+    if len(boxes) <= 0:
+        return False
+
     inputs = box_object(boxes)
     for idx in range(len(inputs)):
         box = inputs[idx]['box']
