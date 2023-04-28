@@ -20,9 +20,10 @@ def box_object(boxes):
     return output
 
 # function that checks if the boxes are unlocked
+
+
 def canUnlockAll(boxes):
     """function that tries to unlock all boxes"""
-
 
     inputs = box_object(boxes)
     for idx in range(len(inputs)):
