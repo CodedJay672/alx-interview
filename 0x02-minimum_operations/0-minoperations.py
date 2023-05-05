@@ -9,9 +9,7 @@ def minOperations(n):
     """
     this function finds the minimum number of operations
     taken to acieve a numbered goal
-
     """
-
 
     if n <= 1:
         return 0
