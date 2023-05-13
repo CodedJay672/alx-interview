@@ -10,7 +10,7 @@ def print_metrics(status_codes, file_size):
 
     print(f"File size: {file_size}")
     for status_code in sorted(status_codes):
-        if status_codes[status_code] > 0:
+        if status_codes[status_code] != 0:
             print(f"{status_code}: {status_codes[status_code]}")
 
 
@@ -25,11 +25,14 @@ if __name__ == '__main__':
             line_elements = line.split()
             count += 1
 
-            if len(line_elements) == 9:
-                file_size += int(line_elements[-1])
+            if len(line_elements) >= 2 and len(line_elements) <= 9:
+                if line_elements[-1].isdigit():
+                    file_size += int(line_elements[-1])
                 if line_elements[-2] in status_codes:
                     status_codes[line_elements[-2]] += 1
             if count % 10 == 0:
                 print_metrics(status_codes, file_size)
+        print_metrics(status_codes, file_size)
     except KeyboardInterrupt:
         print_metrics(status_codes, file_size)
+        raise
