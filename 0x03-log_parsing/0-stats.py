@@ -5,36 +5,31 @@
 import sys
 
 
-def print_metrics(ip_addresses, status_codes, file_sizes):
+def print_metrics(status_codes, file_size):
     """ function that prints metrics """
 
-    total_file_size = sum(file_sizes)
-    print(f"File size: {total_file_size}")
+    print(f"File size: {file_size}")
     for status_code in sorted(status_codes):
-        if status_code in [200, 301, 400, 401, 403, 404, 405, 500]:
+        if status_codes[status_code] > 0:
             print(f"{status_code}: {status_codes[status_code]}")
 
 
-ip_addresses = []
-status_codes = {}
-file_sizes = []
-line_count = 0
+if __name__ == '__main__':
+    count = 0
+    file_size = 0
+    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
+                    "403": 0, "404": 0, "405": 0, "500": 0}
 
-try:
-    for line in sys.stdin:
-        line_count += 1
-        if line_count % 10 == 0:
-            print_metrics(ip_addresses, status_codes, file_sizes)
-        try:
-            ip_address, _, _, _, status_code, file_size = line.split()
-            ip_addresses.append(ip_address)
-            status_codes[
-                    int(status_code)
-                    ] = status_codes.get(
-                            int(status_code), 0
-                            ) + 1
-            file_sizes.append(int(file_size))
-        except ValueError:
-            pass
-except KeyboardInterrupt:
-    print_metrics(ip_addresses, status_codes, file_sizes)
+    try:
+        for line in sys.stdin:
+            line_elements = line.split()
+            count += 1
+
+            if len(line_elements) == 9:
+                file_size += int(line_elements[-1])
+                if line_elements[-2] in status_codes:
+                    status_codes[line_elements[-2]] += 1
+            if count % 10 == 0:
+                print_metrics(status_codes, file_size)
+    except KeyboardInterrupt:
+        print_metrics(status_codes, file_size)
