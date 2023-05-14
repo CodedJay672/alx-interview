@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+This module parses logs which are read line by line
+from the stdin, and prints out the file size and the
+status codes from each line in stdin
+
+"""
 
 import sys
 
