@@ -12,10 +12,10 @@ import sys
 def print_metrics(status_codes, file_size):
     """ function that prints metrics """
 
-    print(f"File size: {file_size}")
+    print("File size: {}".format(file_size))
     for status_code in sorted(status_codes):
         if status_codes[status_code] != 0:
-            print(f"{status_code}: {status_codes[status_code]}")
+            print("{}: {}".format(status_code, status_codes[status_code]))
 
 
 if __name__ == '__main__':
