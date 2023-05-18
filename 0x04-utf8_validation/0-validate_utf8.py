@@ -5,6 +5,7 @@ it is a valid data set
 
 """
 
+
 def validUTF8(data):
     """
     function that checks the utf-8 validity of
@@ -14,9 +15,8 @@ def validUTF8(data):
 
     """
 
-
     try:
         bytes(data).decode('utf-8')
         return True
-    except ValueError:
+    except (ValueError, UnicodeDecodeError):
         return False
