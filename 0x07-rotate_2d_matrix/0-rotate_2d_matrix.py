@@ -4,6 +4,7 @@
 
 """
 
+
 def rotate_2d_matrix(matrix):
     """
       function that rotates a 2d matrix in-place
@@ -17,3 +18,5 @@ def rotate_2d_matrix(matrix):
             matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j]
             matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i]
             matrix[j][N - 1 - i] = temp
+            if j == 2:
+                print()
