@@ -11,8 +11,8 @@ def island_perimeter(grid):
         we iterate over the elements in the grid
             if an element is 1, representing land, we add 4 to
                 the perimeter.
-            if the element to the right is also 1,
-                we subtract one
+            if the element to the right, down, left, and up is 1
+                subtract 1 from the perimeter
     """
     if len(grid) > 100 or len(grid[0]) > 100:
         return
