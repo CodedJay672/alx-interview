@@ -7,7 +7,7 @@ const request = require('request');
 const arg = process.argv[2];
 
 // request from the api and store result in response
-const url = 'https://swapi-api.alx-tools.com/api/films/' + arg;
+const url = `https://swapi-api.alx-tools.com/api/films/${arg}`;
 
 // request for the url
 request(url, async (error, response, body) => {
