@@ -11,17 +11,15 @@ const url = 'https://swapi-api.alx-tools.com/api/films/' + arg;
 
 // request for the url
 request(url, async (error, response, body) => {
-  if (error)
-    console.log(error);
+  if (error) { console.log(error); }
 
   const characters = JSON.parse(body).characters;
 
-  for (character of characters) {
+  for (const character of characters) {
     await new Promise((resolve, reject) => {
       request(character, (error, response, body) => {
-        if (error)
-	  console.log(error);
-	console.log(JSON.parse(body).name);
+        if (error) { console.log(error); }
+        console.log(JSON.parse(body).name);
       });
       resolve();
     });
