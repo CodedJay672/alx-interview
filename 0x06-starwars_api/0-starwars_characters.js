@@ -1,27 +1,32 @@
 #!/usr/bin/node
 
-// import the request
 const request = require('request');
 
-// save command line argument
-const arg = process.argv[2];
+const movieId = process.argv[2];
+const url = `https://swapi.dev/api/films/${movieId}/`;
 
-// request from the api and store result in response
-const url = `https://swapi-api.alx-tools.com/api/films/${arg}`;
-
-// request for the url
-request(url, async (error, response, body) => {
-  if (error) { console.log(error); }
-
-  const characters = JSON.parse(body).characters;
-
-  for (const character of characters) {
-    await new Promise((resolve, reject) => {
-      request(character, (error, response, body) => {
-        if (error) { console.log(error); }
-        console.log(JSON.parse(body).name);
+request(url, function (error, response, body) {
+  if (error) {
+    console.error('Error:', error);
+  } else if (response.statusCode !== 200) {
+    console.error('Invalid Status Code Returned:', response.statusCode);
+  } else {
+    const movie = JSON.parse(body);
+    const characters = movie.characters;
+    characters.forEach((character) => {
+      request(character, function (error, response, body) {
+        if (error) {
+          console.error('Error:', error);
+        } else if (response.statusCode !== 200) {
+          console.error(
+            'Invalid Status Code Returned:',
+            response.statusCode
+          );
+        } else {
+          const character = JSON.parse(body);
+          console.log(character.name);
+        }
       });
-      resolve();
     });
   }
 });
