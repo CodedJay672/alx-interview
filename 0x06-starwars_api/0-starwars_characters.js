@@ -14,11 +14,11 @@ request(url, async (error, response, body) => {
   for (let i = 0; i < characters.length; i += 1) {
     await new Promise((resolve, reject) => {
       request(characters[i], (error, response, body) => {
-	if (error) {
+        if (error) {
           console.log(error);
-	}
-	console.log(JSON.parse(body).name);
-	resolve();
+        }
+        console.log(JSON.parse(body).name);
+        resolve();
       });
     });
   }
