@@ -5,8 +5,10 @@ import sys
 
 
 def is_safe(board, row, col):
-    """Check if a position is safe for a queen"""
-    # Check the same row on left side
+    """ This function Checks if a
+    position is safe for a queen"""
+
+    # for loop Check the same row on left side
     for i in range(col):
         if board[row][i] == 1:
             return False
@@ -34,7 +36,8 @@ def is_safe(board, row, col):
 
 
 def print_board(board):
-    """Print the board configuration in a specific format"""
+    """ Print function """
+
     # Create an empty list to store the positions of the queens
     positions = []
 
@@ -49,7 +52,9 @@ def print_board(board):
 
 
 def solve_n_queens(board, col):
-    """Solve the n-queens problem and print all solutions"""
+    """ function solves the n-queens
+    problem and print all solutions"""
+
     # If all queens are placed, print the board and return true
     if col == n:
         print_board(board)
